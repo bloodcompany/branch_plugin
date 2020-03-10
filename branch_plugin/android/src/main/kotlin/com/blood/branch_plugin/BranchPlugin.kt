@@ -29,12 +29,18 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "branch_plugin")
-      channel.setMethodCallHandler(BranchPlugin())
+
+      val instance = BranchPlugin(registrar)
+      val messageChannel = MethodChannel(registrar.messenger(), "branch_plugin")
+
+      messageChannel.setMethodCallHandler(instance)
+
+//      val channel = MethodChannel(registrar.messenger(), "branch_plugin")
+//      channel.setMethodCallHandler(BranchPlugin())
     }
   }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+  override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == "getPlatformVersion") {
 //      hello()
       setUpBranchIo(registrar, result)
