@@ -34,7 +34,7 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
-      result.success("This is Android Version ${android.os.Build.VERSION.RELEASE}")
+      result.success("Yayy ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
     }
