@@ -11,7 +11,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
 /** BranchPlugin */
-public class BranchPlugin: FlutterPlugin, MethodCallHandler {
+public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "branch_plugin")
     channel.setMethodCallHandler(BranchPlugin());
@@ -37,7 +37,6 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
 //      hello()
-      private var registrar: Registrar
       setUpBranchIo(registrar, result)
 
       result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
