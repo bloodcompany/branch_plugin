@@ -14,10 +14,11 @@ const val TAG = "BranchPlugin"
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
     Log.d(TAG, "INIT BRANCH SETUP")
 
-    Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
-
+//    Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
+    Branch.getInstance().reInitSession(registrar.activity(), branchListener)
 }
 
+//E/BranchPlugin: Warning. Session initialization already happened. To force a new session, set intent extra, "branch_force_new_session", to true.
 object branchListener : Branch.BranchReferralInitListener {
     override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
         if (error == null) {
