@@ -15,7 +15,6 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //    init(registrar)
     Log.d(TAG, "INIT BRANCH SETUP")
     Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
-//        Log.d(DEBUG_NAME, "BRANCH CALLBACK")
 //        if (error == null) {
 //            result.success("BRANCH IO INITIALIZED")
 //            val params = referringParams?.toString()
@@ -27,8 +26,4 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //        }
     }, registrar.activity().intent.data, registrar.activity())
 
-}
-
-fun hello() {
-    Log.d(TAG, "BRANCH PLUGIN CALLBACK")
 }
