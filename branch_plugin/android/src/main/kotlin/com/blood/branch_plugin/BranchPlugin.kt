@@ -8,6 +8,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+import com.blood.branch_plugin.implementation.*
+
 /** BranchPlugin */
 public class BranchPlugin: FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -34,6 +36,7 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
+      sayHello()
       result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
