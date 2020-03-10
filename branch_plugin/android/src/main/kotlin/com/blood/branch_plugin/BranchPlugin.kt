@@ -14,7 +14,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "branch_plugin")
-    channel.setMethodCallHandler(BranchPlugin());
+    channel.setMethodCallHandler(BranchPlugin(registrar));
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
