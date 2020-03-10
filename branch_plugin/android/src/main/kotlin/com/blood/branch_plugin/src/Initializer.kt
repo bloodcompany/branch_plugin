@@ -9,7 +9,7 @@ import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.MethodChannel.Result
 import org.json.JSONObject
 
-fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
+fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //    init(registrar)
     Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
 //        Log.d(DEBUG_NAME, "BRANCH CALLBACK")
