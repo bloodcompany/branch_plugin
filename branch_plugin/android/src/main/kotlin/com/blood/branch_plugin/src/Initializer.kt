@@ -13,6 +13,7 @@ const val TAG = "BranchPlugin"
 
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //    init(registrar)
+    Log.d(TAG, "INIT BRANCH SETUP")
     Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
 //        Log.d(DEBUG_NAME, "BRANCH CALLBACK")
 //        if (error == null) {
