@@ -12,7 +12,7 @@ class ApplicationClass : FlutterApplication() {
         // Branch logging for debugging
         Branch.enableLogging()
 
-        Log.d("INSIDE APPLICATION CLASS", "BRANCH PLUGIN CALLBACK")
+        Log.d("APPLICATION", "BRANCH PLUGIN CALLBACK")
 
         // Branch object initialization
         Branch.getAutoInstance(this)
