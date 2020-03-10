@@ -35,6 +35,7 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
+      sayHello()
       result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
@@ -42,5 +43,9 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  }
+
+  fun sayHello() {
+    println("Hello, I'm insideeee")
   }
 }
