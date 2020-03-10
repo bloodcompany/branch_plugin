@@ -12,18 +12,20 @@ import org.json.JSONObject
 const val TAG = "BranchPlugin"
 
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
-//    init(registrar)
     Log.d(TAG, "INIT BRANCH SETUP")
-    Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
-//        if (error == null) {
-//            result.success("BRANCH IO INITIALIZED")
-//            val params = referringParams?.toString()
-//            val intent = Intent()
-//            intent.putExtra(INTENT_EXTRA_DATA, params)
-//            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
-//        } else {
-//            result.error("1", "BRANCH IO INITIALIZATION ERROR ${error.message}", null)
-//        }
-    }, registrar.activity().intent.data, registrar.activity())
 
+    Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
+
+}
+
+object branchListener : Branch.BranchReferralInitListener {
+    override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
+        if (error == null) {
+            Log.i(TAG, referringParams.toString())
+            // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
+            // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+        } else {
+            Log.e(TAG, error.message)
+        }
+    }
 }
