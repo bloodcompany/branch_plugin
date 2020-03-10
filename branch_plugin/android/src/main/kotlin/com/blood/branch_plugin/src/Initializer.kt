@@ -9,6 +9,8 @@ import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.MethodChannel.Result
 import org.json.JSONObject
 
+const val TAG = "BranchPlugin"
+
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //    init(registrar)
     Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
@@ -24,4 +26,8 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
 //        }
     }, registrar.activity().intent.data, registrar.activity())
 
+}
+
+fun hello() {
+    Log.d(TAG, "BRANCH PLUGIN CALLBACK")
 }
