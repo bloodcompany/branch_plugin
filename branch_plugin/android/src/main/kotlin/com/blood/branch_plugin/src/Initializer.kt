@@ -10,18 +10,18 @@ import io.flutter.plugin.common.MethodChannel.Result
 import org.json.JSONObject
 
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
-    init(registrar)
+//    init(registrar)
     Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
-        Log.d(DEBUG_NAME, "BRANCH CALLBACK")
-        if (error == null) {
-            result.success("BRANCH IO INITIALIZED")
-            val params = referringParams?.toString()
-            val intent = Intent()
-            intent.putExtra(INTENT_EXTRA_DATA, params)
-            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
-        } else {
-            result.error("1", "BRANCH IO INITIALIZATION ERROR ${error.message}", null)
-        }
+//        Log.d(DEBUG_NAME, "BRANCH CALLBACK")
+//        if (error == null) {
+//            result.success("BRANCH IO INITIALIZED")
+//            val params = referringParams?.toString()
+//            val intent = Intent()
+//            intent.putExtra(INTENT_EXTRA_DATA, params)
+//            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
+//        } else {
+//            result.error("1", "BRANCH IO INITIALIZATION ERROR ${error.message}", null)
+//        }
     }, registrar.activity().intent.data, registrar.activity())
 
 }
