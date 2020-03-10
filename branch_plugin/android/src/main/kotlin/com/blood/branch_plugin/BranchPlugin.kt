@@ -36,7 +36,10 @@ public class BranchPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
-      hello()
+//      hello()
+      private var registrar: Registrar
+      setUpBranchIo(registrar, result)
+
       result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
