@@ -18,6 +18,6 @@ void main() {
   });
 
   test('initSession', () async {
-    expect(await BranchPlugin.platformVersion, '42');
+    expect(await BranchPlugin.initSession, '42');
   });
 }
