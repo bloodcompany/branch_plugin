@@ -11,9 +11,8 @@ class ApplicationClass : FlutterApplication() {
         // Branch logging for debugging
         Branch.enableLogging()
 
-        // TODO: REMOVE THIS
-        // Branch logging for debugging
-        Branch.enableDebugMode()
+        // UNCOMMENT THIS FOR TESTING IN DEV
+        // Branch.enableDebugMode()
 
         // Branch object initialization
         Branch.getAutoInstance(this)
