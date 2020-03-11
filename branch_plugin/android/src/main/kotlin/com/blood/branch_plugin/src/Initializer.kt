@@ -43,7 +43,6 @@ object branchListener : Branch.BranchReferralInitListener {
             // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
             // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
 
-            resultReturn.success("BRANCH IO INITIALIZED")
         } else {
             Log.e(TAG, error.message)
         }
