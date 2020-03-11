@@ -11,7 +11,6 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 const val INTENT_EXTRA_DATA = "DATA"
 
-/** BranchPlugin */
 public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "branch_plugin")
@@ -28,6 +27,12 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   companion object {
+
+    private var deepLinkStreamHandler: DeepLinkStreamHandler? = null
+
+    private const val EVENT_CHANNEL: String = "branch_plugin/event"
+    private lateinit var eventChannel: EventChannel
+
     @JvmStatic
     fun registerWith(registrar: Registrar) {
 
@@ -35,6 +40,11 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
       val messageChannel = MethodChannel(registrar.messenger(), "branch_plugin")
 
       messageChannel.setMethodCallHandler(instance)
+      eventChannel = EventChannel(registrar.messenger(), EVENT_CHANNEL)
+
+      this.deepLinkStreamHandler = this.deepLinkStreamHandler ?: DeepLinkStreamHandler()
+      eventChannel.setStreamHandler(this.deepLinkStreamHandler)
+
     }
   }
 
