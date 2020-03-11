@@ -32,4 +32,6 @@ object branchListener : Branch.BranchReferralInitListener {
 
 fun reinitBranchSession(registrar: PluginRegistry.Registrar, result: Result) {
     Log.d(TAG, "REINIT BRANCH SETUP")
+
+    Branch.getInstance().reInitSession(registrar.activity(), branchListener)
 }
