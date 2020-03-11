@@ -10,5 +10,7 @@ class BranchPlugin {
     return version;
   }
 
-  static void reinitSession() {}
+  static void reinitSession() async {
+    await _channel.invokeMethod('reinitSession');
+  }
 }

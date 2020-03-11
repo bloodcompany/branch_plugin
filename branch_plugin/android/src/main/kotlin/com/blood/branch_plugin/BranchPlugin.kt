@@ -53,7 +53,7 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
 
       call.method == "reinitSession" -> {
 //        setUpBranchIo(registrar, result)
-        reinitBranchSession()
+        reinitBranchSession(registrar, result)
         result.success("Inside REINIT SESSION")
       }
 

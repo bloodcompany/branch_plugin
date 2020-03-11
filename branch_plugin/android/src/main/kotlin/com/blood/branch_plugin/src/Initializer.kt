@@ -30,6 +30,6 @@ object branchListener : Branch.BranchReferralInitListener {
     }
 }
 
-fun reinitBranchSession() {
+fun reinitBranchSession(registrar: PluginRegistry.Registrar, result: Result) {
     Log.d(TAG, "REINIT BRANCH SETUP")
 }
