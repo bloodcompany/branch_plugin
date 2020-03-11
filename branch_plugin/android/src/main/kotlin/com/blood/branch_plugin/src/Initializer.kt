@@ -8,14 +8,25 @@ import io.branch.referral.BranchUtil
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.MethodChannel.Result
 import org.json.JSONObject
-import com.blood.branch_plugin.INTENT_EXTRA_DATA
 
 const val TAG = "BranchPlugin"
 
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "INIT BRANCH SETUP")
 
-    Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
+    Branch.getInstance().initSession(Branch.BranchReferralInitListener {
+        override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
+            if (error == null) {
+                Log.i(TAG, referringParams.toString())
+                // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
+                // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+
+                resultReturn.success("BRANCH IO INITIALIZED")
+            } else {
+                Log.e(TAG, error.message)
+            }
+        }
+    }, registrar.activity().intent.data, registrar.activity())
 }
 
 fun reinitBranchSession(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
@@ -31,13 +42,8 @@ object branchListener : Branch.BranchReferralInitListener {
             Log.i(TAG, referringParams.toString())
             // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
             // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
-            result.success("Yayyy...Branch sucessfully init...")
-            val params = referringParams?.toString()
-            val intent = Intent()
-            intent.putExtra(INTENT_EXTRA_DATA, params)
 
-            // NOT NULL ASSERTION
-            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
+            resultReturn.success("BRANCH IO INITIALIZED")
         } else {
             Log.e(TAG, error.message)
         }
