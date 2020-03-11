@@ -11,13 +11,13 @@ import org.json.JSONObject
 
 const val TAG = "BranchPlugin"
 
-fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
+fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "INIT BRANCH SETUP")
 
     Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
 }
 
-fun reinitBranchSession(registrar: PluginRegistry.Registrar, result: Result) {
+fun reinitBranchSession(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "REINIT BRANCH SETUP")
 
     Branch.getInstance().reInitSession(registrar.activity(), branchListener)
