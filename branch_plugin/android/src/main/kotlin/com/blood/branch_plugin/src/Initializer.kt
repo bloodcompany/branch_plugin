@@ -14,16 +14,13 @@ const val TAG = "BranchPlugin"
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "INIT BRANCH SETUP")
 
-    Branch.getInstance().initSession(Branch.BranchReferralInitListener {
-        override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
-            if (error == null) {
-                Log.i(TAG, referringParams.toString())
-                // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
-                // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
-
-            } else {
-                Log.e(TAG, error.message)
-            }
+    Branch.getInstance().initSession({ referringParams: JSONObject?, error: BranchError? ->
+        if (error == null) {
+            Log.i(TAG, referringParams.toString())
+            // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
+            // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+        } else {
+            Log.e(TAG, error.message)
         }
     }, registrar.activity().intent.data, registrar.activity())
 }
