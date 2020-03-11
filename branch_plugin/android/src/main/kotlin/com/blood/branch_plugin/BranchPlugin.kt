@@ -59,7 +59,6 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
 
       call.method == "reinitSession" -> {
         reinitBranchSession(registrar, deepLinkStreamHandler, result)
-//        result.success("Inside REINIT SESSION")
       }
 
       else -> result.notImplemented()

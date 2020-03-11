@@ -37,7 +37,23 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: De
 fun reinitBranchSession(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "REINIT BRANCH SETUP")
 
-    Branch.getInstance().reInitSession(registrar.activity(), branchListener)
+    Branch.getInstance().reInitSession(registrar.activity(), { referringParams: JSONObject?, error: BranchError? ->
+        if (error == null) {
+            Log.i(TAG, referringParams.toString())
+            // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
+            // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+
+            result.success("Branch successfully initialized")
+
+            val params = referringParams?.toString()
+            val intent = Intent()
+            intent.putExtra(INTENT_EXTRA_DATA, params)
+
+            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
+        } else {
+            Log.e(TAG, error.message)
+        }
+    })
 }
 
 //E/BranchPlugin: Warning. Session initialization already happened. To force a new session, set intent extra, "branch_force_new_session", to true.
