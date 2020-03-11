@@ -17,6 +17,12 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, result: Result) {
     Branch.getInstance().initSession(branchListener, registrar.activity().intent.data, registrar.activity())
 }
 
+fun reinitBranchSession(registrar: PluginRegistry.Registrar, result: Result) {
+    Log.d(TAG, "REINIT BRANCH SETUP")
+
+    Branch.getInstance().reInitSession(registrar.activity(), branchListener)
+}
+
 //E/BranchPlugin: Warning. Session initialization already happened. To force a new session, set intent extra, "branch_force_new_session", to true.
 object branchListener : Branch.BranchReferralInitListener {
     override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
@@ -28,10 +34,4 @@ object branchListener : Branch.BranchReferralInitListener {
             Log.e(TAG, error.message)
         }
     }
-}
-
-fun reinitBranchSession(registrar: PluginRegistry.Registrar, result: Result) {
-    Log.d(TAG, "REINIT BRANCH SETUP")
-
-    Branch.getInstance().reInitSession(registrar.activity(), branchListener)
 }
