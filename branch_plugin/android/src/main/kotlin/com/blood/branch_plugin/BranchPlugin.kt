@@ -38,7 +38,7 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    if (call.method == "getPlatformVersion") {
+    if (call.method == "initSession") {
       setUpBranchIo(registrar, result)
 
       result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")

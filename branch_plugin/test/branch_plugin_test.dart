@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
+  test('initSession', () async {
     expect(await BranchPlugin.platformVersion, '42');
   });
 }
