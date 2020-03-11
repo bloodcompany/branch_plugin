@@ -9,6 +9,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+const val INTENT_EXTRA_DATA = "DATA"
 
 /** BranchPlugin */
 public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, MethodCallHandler {

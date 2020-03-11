@@ -4,11 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.blood.branch_plugin.INTENT_EXTRA_DATA
 import io.flutter.plugin.common.EventChannel
 
 class DeepLinkStreamHandler: EventChannel.StreamHandler {
 
-    const val TAG = "BranchPlugin"
+    private const val TAG: String = "BranchPlugin"
 
     private var receiver: BroadcastReceiver? = null
 
