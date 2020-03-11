@@ -14,7 +14,7 @@ const val TAG = "BranchPlugin"
 fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: DeepLinkStreamHandler?, result: Result) {
     Log.d(TAG, "INIT BRANCH SETUP")
 
-    Branch.getInstance().initSession(object branchListener : Branch.BranchReferralInitListener {
+    Branch.getInstance().initSession(listener : Branch.BranchReferralInitListener {
         override fun onInitFinished(referringParams: JSONObject?, error: BranchError?) {
             if (error == null) {
                 Log.i(TAG, referringParams.toString())
