@@ -9,7 +9,7 @@ import io.flutter.plugin.common.EventChannel
 
 class DeepLinkStreamHandler: EventChannel.StreamHandler {
 
-    private const val TAG: String = "BranchPlugin"
+    private var TAG: String = "BranchPlugin"
 
     private var receiver: BroadcastReceiver? = null
 
