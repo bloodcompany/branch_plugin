@@ -13,8 +13,9 @@ class BranchPlugin {
     return version;
   }
 
-  static void reinitSession() async {
-    await _channel.invokeMethod('reinitSession');
+  static Future<String> get reinitSession async {
+    final String version = await _channel.invokeMethod('reinitSession');
+    return version;
   }
 
   static Stream<String> deepLinkStreamListener() {
