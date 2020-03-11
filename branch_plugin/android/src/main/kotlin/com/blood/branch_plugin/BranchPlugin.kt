@@ -54,12 +54,12 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
     when {
       call.method == "initSession" -> {
         setUpBranchIo(registrar, deepLinkStreamHandler, result)
-        result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
+//        result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
       }
 
       call.method == "reinitSession" -> {
         reinitBranchSession(registrar, deepLinkStreamHandler, result)
-        result.success("Inside REINIT SESSION")
+//        result.success("Inside REINIT SESSION")
       }
 
       else -> result.notImplemented()

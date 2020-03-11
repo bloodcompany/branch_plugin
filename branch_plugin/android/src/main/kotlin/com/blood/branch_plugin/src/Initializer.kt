@@ -26,6 +26,8 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: De
             val params = referringParams?.toString()
             val intent = Intent()
             intent.putExtra(INTENT_EXTRA_DATA, params)
+
+            deepLinkStreamHandler!!.handleIntent(registrar.activity(), intent)
         } else {
             Log.e(TAG, error.message)
         }
