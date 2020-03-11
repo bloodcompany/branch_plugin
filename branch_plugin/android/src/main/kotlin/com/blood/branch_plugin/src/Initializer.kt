@@ -29,3 +29,7 @@ object branchListener : Branch.BranchReferralInitListener {
         }
     }
 }
+
+fun reinitBranchSession() {
+    Log.d(TAG, "REINIT BRANCH SETUP")
+}

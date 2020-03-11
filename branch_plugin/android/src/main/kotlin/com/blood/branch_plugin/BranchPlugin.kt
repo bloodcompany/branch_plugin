@@ -38,12 +38,26 @@ public class BranchPlugin(private var registrar: Registrar): FlutterPlugin, Meth
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    if (call.method == "initSession") {
-      setUpBranchIo(registrar, result)
+//    if (call.method == "initSession") {
+//      setUpBranchIo(registrar, result)
+//
+//      result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
+//    } else {
+//      result.notImplemented()
+//    }
+    when {
+      call.method == "initSession" -> {
+        setUpBranchIo(registrar, result)
+        result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
+      }
 
-      result.success("WooHoo ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+      call.method == "reinitSession" -> {
+//        setUpBranchIo(registrar, result)
+        reinitBranchSession()
+        result.success("Inside REINIT SESSION")
+      }
+
+      else -> result.notImplemented()
     }
   }
 
