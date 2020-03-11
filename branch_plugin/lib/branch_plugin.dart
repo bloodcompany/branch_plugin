@@ -9,13 +9,13 @@ class BranchPlugin {
   static Stream<String> mainStream;
 
   static Future<String> get initSession async {
-    final String version = await _channel.invokeMethod('initSession');
-    return version;
+    final String result = await _channel.invokeMethod('initSession');
+    return result;
   }
 
   static Future<String> get reinitSession async {
-    final String version = await _channel.invokeMethod('reinitSession');
-    return version;
+    final String result = await _channel.invokeMethod('reinitSession');
+    return result;
   }
 
   static Stream<String> deepLinkStreamListener() {
