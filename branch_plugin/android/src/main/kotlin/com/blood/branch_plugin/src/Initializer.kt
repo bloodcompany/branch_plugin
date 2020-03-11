@@ -8,6 +8,7 @@ import io.branch.referral.BranchUtil
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.MethodChannel.Result
 import org.json.JSONObject
+import com.blood.branch_plugin.INTENT_EXTRA_DATA
 
 const val TAG = "BranchPlugin"
 
@@ -19,6 +20,12 @@ fun setUpBranchIo(registrar: PluginRegistry.Registrar, deepLinkStreamHandler: De
             Log.i(TAG, referringParams.toString())
             // Retrieve deeplink keys from 'referringParams' and evaluate the values to determine where to route the user
             // Check '+clicked_branch_link' before deciding whether to use your Branch routing logic
+
+            result.success("Branch successfully initialized")
+
+            val params = referringParams?.toString()
+            val intent = Intent()
+            intent.putExtra(INTENT_EXTRA_DATA, params)
         } else {
             Log.e(TAG, error.message)
         }
