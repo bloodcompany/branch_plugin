@@ -5,6 +5,11 @@ var eventChannel: FlutterEventChannel?
 let EVENT_CHANNEL = "branch_plugin/event";
 
 public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
+
+  var eventSink: FlutterEventSink?
+  var initialParams : [String: Any]? = nil
+  var initialError : NSError? = nil
+
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "branch_plugin", binaryMessenger: registrar.messenger())
     
@@ -28,12 +33,16 @@ public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
   // --------------------------------------------------------------------------------------------
     
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        // TODO
+        self.eventSink = events
+        
         return nil
   }
 
   public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        // TODO
+        eventSink = nil
+        initialParams = nil
+        initialError = nil
+
         return nil
   }
 }
