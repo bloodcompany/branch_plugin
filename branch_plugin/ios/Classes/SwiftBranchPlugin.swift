@@ -15,15 +15,25 @@ public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
+  //---------------------------------------------------------------------------------------------
+  // FlutterMethodChannel Interface Methods
+  // --------------------------------------------------------------------------------------------
+    
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     result("iOS " + UIDevice.current.systemVersion)
   }
 
+  //---------------------------------------------------------------------------------------------
+  // FlutterStreamHandler Interface Methods
+  // --------------------------------------------------------------------------------------------
+    
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         // TODO
+        return nil
   }
 
   public func onCancel(withArguments arguments: Any?) -> FlutterError? {
         // TODO
+        return nil
   }
 }
