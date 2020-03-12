@@ -20,10 +20,10 @@ public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
   }
 
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        <#code#>
+        // TODO
   }
 
   public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        <#code#>
+        // TODO
   }
 }
