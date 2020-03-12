@@ -12,11 +12,18 @@ public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
     eventChannel = FlutterEventChannel(name: EVENT_CHANNEL, binaryMessenger: registrar.messenger())
     eventChannel!.setStreamHandler(instance)
     
-    registrar.addApplicationDelegate(instance)
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     result("iOS " + UIDevice.current.systemVersion)
+  }
+
+  public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        <#code#>
+  }
+
+  public func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        <#code#>
   }
 }
