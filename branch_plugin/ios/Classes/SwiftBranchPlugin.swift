@@ -34,7 +34,21 @@ public class SwiftBranchPlugin: NSObject, FlutterPlugin, FlutterStreamHandler  {
     
   public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         self.eventSink = events
-        
+
+        if (initialParams != nil) {
+            self.eventSink!(initialParams)
+            initialParams = nil
+            initialError = nil
+        } else if (initialError != nil) {
+            
+            self.eventSink!(FlutterError(code: String(initialError!.code),
+            message: initialError!.localizedDescription,
+            details: nil))
+            
+            initialParams = nil
+            initialError = nil
+        }
+
         return nil
   }
 
